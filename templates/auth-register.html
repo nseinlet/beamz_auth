@@ -1,0 +1,52 @@
+{% extends "auth-base.html" %}
+
+{% block subtitle %}Register{% endblock %}
+
+{% block headercontent %}Welcome{% endblock %}
+{% block introcontent %}Register to access the application{% endblock %}
+
+{% block formcontent %}
+
+	{{ form.non_field_errors }}
+    {% csrf_token %}
+
+    {% if form.new_username.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ form.new_username.errors }}
+        </div>
+    {% endif %}
+    <div class="form-group mb-3">
+        <label for="id_new_username">Username:</label>
+        <input class="form-control" id="id_new_username" name="new_username" value="">
+    </p>
+
+    {% if form.new_password1.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ form.new_password1.errors }}
+        </div>
+    {% endif %}
+    <div class="form-group mb-3">
+        <label for="id_new_password1">New password:</label>
+        <input class="form-control" type="password" id="id_new_password1" name="new_password1" value="">
+    </p>
+    {% if form.new_password2.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ form.new_password2.errors }}
+        </div>
+    {% endif %}
+    <div class="form-group mb-3">
+        <label for="id_new_password2">Confirm password:</label>
+        <input class="form-control" type="password" id="id_new_password2" name="new_password2" value="">
+    </div>
+
+     <div class="text-center mt-3">
+		<button type="submit" class="btn btn-lg btn-primary">Sign up</button>
+	</div>
+
+    <div class="text-center mt-3">
+		Already have an account? <a href="/login">Login</a>
+	</div>
+
+
+{% endblock %}
+
