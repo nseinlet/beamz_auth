@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm, UsernameField, PasswordResetForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UsernameField, PasswordResetForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -31,7 +31,26 @@ class ResetPasswordForm(PasswordResetForm):
             'placeholder': ''
         }))
 
+class ChangePasswordForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(PasswordChangeForm, self).__init__(*args, **kwargs)
 
+    old_password = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control', 
+            'placeholder': ''
+        }))
+    new_password1 = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control', 
+            'placeholder': ''
+        }))
+    new_password2 = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control', 
+            'placeholder': ''
+        }))
+    
 def logout_view(request):
     logout(request)
     return redirect('/')
