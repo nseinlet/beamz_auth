@@ -6,6 +6,16 @@
 {% block introcontent %}Sign in to your account to continue{% endblock %}
 
 {% block formcontent %}
+	{% if user.is_authenticated %}
+		<div class="alert alert-success" role="alert">
+			<center>You are already logged in as {{ user.username }}</center>
+			<br/>
+			<div class="d-flex justify-content-between">
+				<a href="{% url 'logout' %}" class="btn btn-primary float-start">Logout</a>
+				<a href="/app" class="btn btn-success float-right">Dashboard</a>
+			</div>
+		</div>
+	{% endif %}
 
 	{{ form.non_field_errors }}
 	{% csrf_token %}
