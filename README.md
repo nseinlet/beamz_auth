@@ -1,2 +1,2 @@
 # beamz_auth
-Django forms using bootstrap
+Django auth forms using bootstrap
