@@ -11,18 +11,13 @@
         <title>BeamZ - {% block subtitle %}{% endblock %}</title>
         <link rel="shortcut icon" type="image/png" href="/static/favicon.ico"/>
 
-        <link rel="stylesheet" href="/static/libs/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="/static/libs/css/fontawesome.min.css"/>
-        <link rel="stylesheet" href="/static/libs/css/app.css" />
-        <link rel="stylesheet" href="/static/src/css/beamz.css" />    
-        <link rel="stylesheet" href="/static/src/css/auth.css" />    
+        {% include "css.html" %}
+        <link rel="stylesheet" href="/static/src/css/auth.css"/>
 
     </head>
         
     <body id="page-top">      
-          <script src="/static/libs/popper.min.js"></script>
-          <script src="/static/libs/bootstrap.min.js"></script>
-          <script src="/static/libs/owl.min.js"></script>
+      {% include "js.html" %}
 
           <main class="d-flex w-100 beamzgrey">
             <div class="container d-flex flex-column">
