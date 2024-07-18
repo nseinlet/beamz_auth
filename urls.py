@@ -1,7 +1,9 @@
 from django.contrib.auth import views
 from django.urls import path
 
-from .views import UserLoginForm, logout_view, ResetPasswordForm, SignUpView, ChangePasswordForm, success_register
+from .forms import UserLoginForm, ResetPasswordForm, ChangePasswordForm
+from .views import logout_view, SignUpView, success_register
+
 
 urlpatterns = [
 
