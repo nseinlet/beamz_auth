@@ -1,0 +1,13 @@
+{% extends "auth-base.html" %}
+
+{% block subtitle %}Token sent{% endblock %}
+
+{% block headercontent %}Welcome{% endblock %}
+{% block introcontent %}Successfully sent activation mail{% endblock %}
+
+{% block formcontent %}
+
+    <p> We've sent an email with a confirmation link. Not received? Check your spam box.</p>
+    <p> Still not received? <a href='/missing-token/' class="btn btn-primary">Send activation mail</a></p>
+
+{% endblock %}

@@ -29,6 +29,10 @@
 
     <div class="text-center mt-3">
 		Already have an account? <a href="/login">Login</a>
+        {% if form.errors %}
+        <br/>
+        Searching for account validation email? <a href="/missing-token/">Resend it</a>
+        {% endif %}
 	</div>
 
 

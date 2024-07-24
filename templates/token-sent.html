@@ -1,0 +1,14 @@
+{% extends "auth-base.html" %}
+
+{% block subtitle %}Token sent{% endblock %}
+
+{% block headercontent %}Welcome{% endblock %}
+{% block introcontent %}Successfully registered{% endblock %}
+
+{% block formcontent %}
+
+	<p> You're now registered, but you must confirm your email to <b>activate</b> your account.</p>
+    <p> We've sent an email with a confirmation link. Not received? Check your spam box.</p>
+    <p> Still not received? <a href='/missing-token/' class="btn btn-primary">Send activation mail</a></p>
+
+{% endblock %}
