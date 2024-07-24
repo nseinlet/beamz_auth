@@ -2,11 +2,10 @@ from django.contrib.auth import views
 from django.urls import path
 
 from .forms import UserLoginForm, ResetPasswordForm, ChangePasswordForm
-from .views import logout_view, SignUpView, success_register
+from .views import logout_view, SignUpView, success_register, token_sent, missing_token, activate_account
 
 
 urlpatterns = [
-
     path(
         'login/',
         views.LoginView.as_view(
@@ -22,5 +21,9 @@ urlpatterns = [
     path('reset-password-confirm/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(template_name="reset_password_form.html"), name='password_reset_confirm'),
     path('reset-password-complete/', views.PasswordResetCompleteView.as_view(template_name="password_reset_complete.html"), name="password_reset_complete"),
     path("register/", SignUpView.as_view(), name="register"),
+    path("missing-token/", missing_token, name="missing_token"),
+    path("token-sent/", token_sent, name="token_sent"),
+    path("token-resent/", token_sent, name="token_resent"),
     path("successregister/", success_register, name="success_register"),
+    path('activate/<token>/',  activate_account, name='activate_account'),
 ]

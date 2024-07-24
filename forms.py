@@ -1,6 +1,8 @@
 from django.contrib.auth.forms import AuthenticationForm, UsernameField, PasswordResetForm, UserCreationForm, PasswordChangeForm
 from django import forms
+from django.core.exceptions import ValidationError
 
+from .models import UserValidation
 
 class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
@@ -75,10 +77,32 @@ class UserRegisterForm(UserCreationForm):
             'placeholder': ''
         }))
     
+    def clean_email(self):
+        data = self.cleaned_data["email"]
+        if UserValidation.objects.filter(owner_uid__email=data).filter(owner_uid__is_active=False).count()==1:
+            raise ValidationError("The account linked to this email is waiting Activation.")
+        return data
+    
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data["email"]
         user.is_active = False
         if commit:
             user.save()
+        uv = UserValidation.objects.create(owner_uid=user)
+        uv.send_mail()
         return user
+
+
+class MissingTokenForm(forms.Form):
+    email = forms.EmailField(widget=forms.EmailInput(
+        attrs={
+            'class': 'form-control', 
+            'placeholder': ''
+        }))
+    
+    def clean_email(self):
+        data = self.cleaned_data["email"]
+        if UserValidation.objects.filter(owner_uid__email=data).count()==0:
+            raise ValidationError("Either your account is already validated, or you've not registered.")
+        return data
