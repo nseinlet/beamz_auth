@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, UsernameField, PasswordResetForm, UserCreationForm, PasswordChangeForm
 from django import forms
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _
 
 from .models import UserValidation
 
@@ -35,17 +36,17 @@ class ChangePasswordForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
         super(PasswordChangeForm, self).__init__(*args, **kwargs)
 
-    old_password = forms.CharField(widget=forms.PasswordInput(
+    old_password = forms.CharField(label=_('Old password'), widget=forms.PasswordInput(
         attrs={
             'class': 'form-control', 
             'placeholder': ''
         }))
-    new_password1 = forms.CharField(widget=forms.PasswordInput(
+    new_password1 = forms.CharField(label=_('New password'), widget=forms.PasswordInput(
         attrs={
             'class': 'form-control', 
             'placeholder': ''
         }))
-    new_password2 = forms.CharField(widget=forms.PasswordInput(
+    new_password2 = forms.CharField(label=_('Repeat new password'), widget=forms.PasswordInput(
         attrs={
             'class': 'form-control', 
             'placeholder': ''
@@ -80,7 +81,7 @@ class UserRegisterForm(UserCreationForm):
     def clean_email(self):
         data = self.cleaned_data["email"]
         if UserValidation.objects.filter(owner_uid__email=data).filter(owner_uid__is_active=False).count()==1:
-            raise ValidationError("The account linked to this email is waiting Activation.")
+            raise ValidationError(_("The account linked to this email is waiting Activation."))
         return data
     
     def save(self, commit=True):
@@ -104,5 +105,5 @@ class MissingTokenForm(forms.Form):
     def clean_email(self):
         data = self.cleaned_data["email"]
         if UserValidation.objects.filter(owner_uid__email=data).count()==0:
-            raise ValidationError("Either your account is already validated, or you've not registered.")
+            raise ValidationError(_("Either your account is already validated, or you've not registered."))
         return data

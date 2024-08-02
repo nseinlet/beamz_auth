@@ -1,10 +1,11 @@
 {% extends "auth-base.html" %}
+{% load i18n %}
 
-{% block subtitle %}Validation email not received{% endblock %}
+{% block subtitle %}{% trans "Validation email not received" %}{% endblock %}
 
-{% block headercontent %}Enter your email adress{% endblock %}
+{% block headercontent %}{% trans "Enter your email adress" %}{% endblock %}
 
-{% block introcontent %}If you've not received our activation email, we'll send it again to activate your account{% endblock %}
+{% block introcontent %}{% trans "If you've not received our activation email, we'll send it again to activate your account" %}{% endblock %}
 
 {% block formcontent %}
     {{ form.non_field_errors }}
@@ -16,12 +17,12 @@
         </div>
     {% endif %}
     <div class="form-group mb-3">
-        <label for="id_email">Email adress:</label>
+        <label for="id_email">{% trans "Email adress" %}:</label>
         <input class="form-control" type="email" id="id_email" name="email" value="">
     </p>
 
     <div class="text-center mt-3">
-		<button type="submit" class="btn btn-lg btn-primary">Send my activation email</button>
+		<button type="submit" class="btn btn-lg btn-primary">{% trans "Send my activation email" %}</button>
 	</div>
     
 {% endblock %}

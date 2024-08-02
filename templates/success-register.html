@@ -1,15 +1,17 @@
 {% extends "auth-base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
-{% block subtitle %}Register{% endblock %}
+{% block subtitle %}{% trans "Register" %}{% endblock %}
 
-{% block headercontent %}Welcome{% endblock %}
-{% block introcontent %}Successful register{% endblock %}
+{% block headercontent %}{% trans "Welcome" %}{% endblock %}
+{% block introcontent %}{% trans "Successful register" %}{% endblock %}
 
 {% block formcontent %}
 
-	<p> You're now registered as a free user. <a href="/login">Login</a> to continue.</p>
-	<p> to analyse structures, you'll need a professional or student subscription. You can request it through <a href="/app/subscription/">your portal</a>. </p>
-	<p> Member of an organisation? Ask your admin to add your accouint in the org.</p>
+	<p> {% trans "You're now registered as a free user." %}" <a href="/{{ LANGUAGE_CODE }}/login">{% trans "Login" %}</a> {% trans "to continue." %}</p>
+	<p> {% trans "To analyse structures, you'll need a professional or student subscription. You can request it through" %} <a href="/{{ LANGUAGE_CODE }}/app/subscription/">{% trans "your portal" %}</a>. </p>
+	<p> {% trans "Member of an organisation? Ask your admin to add your account in the org." %}</p>
 
 {% endblock %}
 
