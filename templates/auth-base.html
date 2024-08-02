@@ -1,5 +1,7 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
+{% load random_backgrounds %}
+
 <!DOCTYPE html>
   <html lang="en">
     <head>   
@@ -18,52 +20,59 @@
 
     </head>
         
-    <body id="page-top">      
+    <body id="page-top" style="background-image: url('{% random_background %}')">      
       {% include "js.html" %}
-
-      <div class="position-absolute top-0 end-0">
-
-
-        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-          <input name="next" type="hidden" value="{{ redirect_to }}">
-          <select name="language"  class="form-select" data-width="fit" onchange="this.form.submit()">
-              {% get_current_language as LANGUAGE_CODE %}
-              {% get_available_languages as LANGUAGES %}
-              {% get_language_info_list for LANGUAGES as languages %}
-              {% for language in languages %}
-                  <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                    {% if language.code == 'en' %}🇬🇧&emsp;{% endif %}
-                    {% if language.code == 'fr' %}🇫🇷&emsp;{% endif %}
-                    {% if language.code == 'de' %}🇩🇪&emsp;{% endif %}
-                    {% if language.code == 'nl' %}🇳🇱&emsp;{% endif %}
-                    {{ language.name_local }} 
-                  </option>
-              {% endfor %}
-          </select>
-      </form>
-
-      </div>
-
-          <main class="d-flex w-100 beamzgrey">
+          <main class="d-flex w-100">
             <div class="container d-flex flex-column">
               <div class="row vh-100">
-                <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+                <div class="col-sm-12 col-md-12 col-lg-12 mx-auto d-table h-100">
                   <div class="d-table-cell align-middle">
+                    
+                      
+                      
+                    
+                    <div class="card-group">
+                      <div class="card">
+                        <div class="card-body beamzgrey">
+                          <div class="text-center mt-4">
+                            <h1 class="h2">{% block headercontent %}{% endblock %}</h1>
+                          </div>        
+                          
+                          <a href="/{{ LANGUAGE_CODE }}/"><img src="/static/img/Logo.png" class="img-fluid" alt="BeamZ Logo" style="margin: 0 auto; display: block;"/></a>
 
-                    <a href="/{{ LANGUAGE_CODE }}/"><img src="/static/img/Logo.png" class="img-fluid" alt="BeamZ Logo" style="margin: 0 auto; display: block;"/></a>
-        
-                    <div class="text-center mt-4">
-                      <h1 class="h2">{% block headercontent %}{% endblock %}</h1>
-                      <p class="lead">
-                        {% block introcontent %}{% endblock %}
-                      </p>
-                    </div>
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="m-sm-4">
-                          <form method="post">
-                            {% block formcontent %}{% endblock %}
+                          <div class="text-center mt-4">
+                            <p class="lead">
+                              {% block introcontent %}{% endblock %}
+                            </p>
+                          </div>
+
+                          <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}">
+                            <select name="language"  class="form-select" data-width="fit" onchange="this.form.submit()">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                      {% if language.code == 'en' %}🇬🇧&emsp;{% endif %}
+                                      {% if language.code == 'fr' %}🇫🇷&emsp;{% endif %}
+                                      {% if language.code == 'de' %}🇩🇪&emsp;{% endif %}
+                                      {% if language.code == 'nl' %}🇳🇱&emsp;{% endif %}
+                                      {{ language.name_local }} 
+                                    </option>
+                                {% endfor %}
+                            </select>
                           </form>
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <div class="card-body">
+                            <div class="m-sm-4">
+                              <form method="post">
+                                {% block formcontent %}{% endblock %}
+                              </form>
+                            </div>
                         </div>
                       </div>
                     </div>
@@ -73,5 +82,4 @@
           </div>
         </main>
     </body>
-
 </html>
