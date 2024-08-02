@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse_lazy
 from django.views import generic
+from django.utils.translation import gettext as _
 
 from .forms import UserRegisterForm, MissingTokenForm
 from .models import UserValidation
@@ -50,10 +51,10 @@ def success_register(request):
 
 def activate_account(request, token):
     if not token:
-        raise Http404("Account not activated, wrong token")
+        raise Http404(_("Account not activated, wrong token"))
     uv = UserValidation.objects.filter(owner_uid__is_active=False, auth_token=token)
     if uv.count()==0:
-        raise Http404("Account not activated, wrong token")
+        raise Http404(_("Account not activated, wrong token"))
     user_reg = uv.first()
     uid = user_reg.owner_uid
     uid.is_active = True

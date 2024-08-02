@@ -1,9 +1,11 @@
 {% extends "auth-base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
-{% block subtitle %}Register{% endblock %}
+{% block subtitle %}{% trans "Register" %}{% endblock %}
 
-{% block headercontent %}Welcome{% endblock %}
-{% block introcontent %}Register to access the application{% endblock %}
+{% block headercontent %}{% trans "Welcome" %}{% endblock %}
+{% block introcontent %}{% trans "Register to access the application" %}{% endblock %}
 
 {% block formcontent %}
 
@@ -11,30 +13,54 @@
     {% if form.errors %} {% for field in form %} {% for error in field.errors %}<p> {{ error }}</p> {% endfor %}{% endfor %}{% endif %}
     {% csrf_token %}
 
-    {% for field in form %}
-        {% if field.errors %}
+    <div class="form-group mb-3">
+		<label class="form-label" for="{{ form.username.id_for_label }}">{% trans "Username" %}:</label>
+		{{ form.username }}
+		{% if form.username.errors %}
         <div class="alert alert-danger" role="alert">
-            {{ field.errors }}
+            {{ form.username.errors }}
         </div>
         {% endif %}
-        <div class="form-group mb-3">
-            <label for="id_new_email">{{field.label}}</label>
-            {{ field }}
-        </p>
-    {% endfor %}
-
-    <div class="text-center mt-3">
-		<button type="submit" class="btn btn-lg btn-primary">Sign up</button>
 	</div>
-
-    <div class="text-center mt-3">
-		Already have an account? <a href="/login">Login</a>
-        {% if form.errors %}
-        <br/>
-        Searching for account validation email? <a href="/missing-token/">Resend it</a>
+    <div class="form-group mb-3">
+		<label class="form-label" for="{{ form.email.id_for_label }}">{% trans "Email" %}:</label>
+		{{ form.email }}
+		{% if form.email.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ form.email.errors }}
+        </div>
+        {% endif %}
+	</div>
+    <div class="form-group mb-3">
+		<label class="form-label" for="{{ form.password1.id_for_label }}">{% trans "Password" %}:</label>
+		{{ form.password1 }}
+		{% if form.password1.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ form.password1.errors }}
+        </div>
+        {% endif %}
+	</div>
+    <div class="form-group mb-3">
+		<label class="form-label" for="{{ form.password2.id_for_label }}">{% trans "Repeat password" %}:</label>
+		{{ form.password2 }}
+		{% if form.password2.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ form.password2.errors }}
+        </div>
         {% endif %}
 	</div>
 
+    <div class="text-center mt-3">
+		<button type="submit" class="btn btn-lg btn-primary">{% trans "Sign up" %}</button>
+	</div>
+
+    <div class="text-center mt-3">
+		{% trans "Already have an account?" %} <a href="/{{ LANGUAGE_CODE }}/login">{% trans "Login" %}</a>
+        {% if form.errors %}
+        <br/>
+        {% trans "Searching for account validation email?" %}" <a href="/{{ LANGUAGE_CODE }}/missing-token/">{% trans "Resend it" %}</a>
+        {% endif %}
+	</div>
 
 {% endblock %}
 

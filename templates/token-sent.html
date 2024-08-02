@@ -1,14 +1,16 @@
 {% extends "auth-base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
-{% block subtitle %}Token sent{% endblock %}
+{% block subtitle %}{% trans "Token sent" %}{% endblock %}
 
-{% block headercontent %}Welcome{% endblock %}
-{% block introcontent %}Successfully registered{% endblock %}
+{% block headercontent %}{% trans "Welcome" %}{% endblock %}
+{% block introcontent %}{% trans "Successfully registered" %}{% endblock %}
 
 {% block formcontent %}
 
-	<p> You're now registered, but you must confirm your email to <b>activate</b> your account.</p>
-    <p> We've sent an email with a confirmation link. Not received? Check your spam box.</p>
-    <p> Still not received? <a href='/missing-token/' class="btn btn-primary">Send activation mail</a></p>
+	<p> {% trans "You're now registered, but you must confirm your email to" %} <b>{% trans "activate" %}</b> {% trans "your account" %}.</p>
+    <p> {% trans "We've sent an email with a confirmation link. Not received? Check your spam box." %}</p>
+    <p> {% trans "Still not received?" %} <a href='/{{ LANGUAGE_CODE }}/missing-token/' class="btn btn-primary">{% trans "Send activation mail" %}</a></p>
 
 {% endblock %}
