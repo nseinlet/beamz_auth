@@ -14,5 +14,5 @@ class LoggingEmailBackend(EmailBackend):
             _logger.debug("%s email messages sent" % nbr_sent)
             return nbr_sent
         except Exception as e:
-            _logger.error("exception during sending emails.", e)
+            _logger.error("exception during sending emails. %s", e)
             raise e

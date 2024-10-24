@@ -16,6 +16,11 @@
             {{ form.email.errors }}
         </div>
     {% endif %}
+    {% if extra_error %}
+        <div class="alert alert-danger" role="alert">
+            {{ extra_error }}
+        </div>
+    {% endif %}
     <div class="form-group mb-3">
         <label for="id_email">{% trans "Email adress" %}:</label>
         <input class="form-control" type="email" id="id_email" name="email" value="">

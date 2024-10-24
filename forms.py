@@ -1,9 +1,14 @@
+import logging
+
 from django.contrib.auth.forms import AuthenticationForm, UsernameField, PasswordResetForm, UserCreationForm, PasswordChangeForm
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 
 from .models import UserValidation
+
+_logger = logging.getLogger(__name__)
+
 
 class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
@@ -91,7 +96,11 @@ class UserRegisterForm(UserCreationForm):
         if commit:
             user.save()
         uv = UserValidation.objects.create(owner_uid=user)
-        uv.send_mail()
+        if not uv.send_mail():
+            _logger.error("Impossible to send email, drop user validation. %s")
+            uv.owner_uid.delete()
+            uv.delete()
+            raise Exception("Impossible to create user")
         return user
 
 
