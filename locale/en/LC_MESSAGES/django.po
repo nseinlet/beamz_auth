@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-02 21:00+0000\n"
+"POT-Creation-Date: 2024-08-06 13:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: beamz_auth/forms.py:39 beamz_auth/templates/change_password_form.html:15
+msgid "Old password"
+msgstr ""
+
+#: beamz_auth/forms.py:44 beamz_auth/templates/change_password_form.html:25
+#: beamz_auth/templates/reset_password_form.html:20
+msgid "New password"
+msgstr ""
+
+#: beamz_auth/forms.py:49 beamz_auth/templates/change_password_form.html:35
+msgid "Repeat new password"
+msgstr ""
+
 #: beamz_auth/forms.py:84
 msgid "The account linked to this email is waiting Activation."
 msgstr ""
@@ -54,10 +68,12 @@ msgid "Dashboard"
 msgstr ""
 
 #: beamz_auth/templates/auth-login.html:26
+#: beamz_auth/templates/auth-register.html:17
 msgid "Username"
 msgstr ""
 
 #: beamz_auth/templates/auth-login.html:33
+#: beamz_auth/templates/auth-register.html:35
 msgid "Password"
 msgstr ""
 
@@ -70,7 +86,7 @@ msgid "Reset Password"
 msgstr ""
 
 #: beamz_auth/templates/auth-login.html:41
-#: beamz_auth/templates/auth-register.html:33
+#: beamz_auth/templates/auth-register.html:58
 #: beamz_auth/templates/success-register.html:12
 msgid "Login"
 msgstr ""
@@ -99,19 +115,28 @@ msgstr ""
 msgid "Register to access the application"
 msgstr ""
 
-#: beamz_auth/templates/auth-register.html:29
+#: beamz_auth/templates/auth-register.html:26
+#: beamz_auth/templates/password_reset_form.html:15
+msgid "Email"
+msgstr ""
+
+#: beamz_auth/templates/auth-register.html:44
+msgid "Repeat password"
+msgstr ""
+
+#: beamz_auth/templates/auth-register.html:54
 msgid "Sign up"
 msgstr ""
 
-#: beamz_auth/templates/auth-register.html:33
+#: beamz_auth/templates/auth-register.html:58
 msgid "Already have an account?"
 msgstr ""
 
-#: beamz_auth/templates/auth-register.html:36
+#: beamz_auth/templates/auth-register.html:61
 msgid "Searching for account validation email?"
 msgstr ""
 
-#: beamz_auth/templates/auth-register.html:36
+#: beamz_auth/templates/auth-register.html:61
 msgid "Resend it"
 msgstr ""
 
@@ -128,19 +153,6 @@ msgstr ""
 msgid ""
 "Please enter your old password, for security’s sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
-msgstr ""
-
-#: beamz_auth/templates/change_password_form.html:15
-msgid "Old password"
-msgstr ""
-
-#: beamz_auth/templates/change_password_form.html:25
-#: beamz_auth/templates/reset_password_form.html:20
-msgid "New password"
-msgstr ""
-
-#: beamz_auth/templates/change_password_form.html:35
-msgid "Retype new password"
 msgstr ""
 
 #: beamz_auth/templates/change_password_form.html:46
@@ -204,12 +216,7 @@ msgstr ""
 
 #: beamz_auth/templates/password_reset_form.html:8
 msgid ""
-"Enter your email address below, and we'll email instructions for setting a "
-"new one."
-msgstr ""
-
-#: beamz_auth/templates/password_reset_form.html:15
-msgid "Email"
+"Enter your email address, and we'll email instructions for setting a new one."
 msgstr ""
 
 #: beamz_auth/templates/password_reset_form.html:21
