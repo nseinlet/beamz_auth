@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-06 13:42+0000\n"
+"POT-Creation-Date: 2024-11-11 20:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,144 +18,174 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: beamz_auth/forms.py:39 beamz_auth/templates/change_password_form.html:15
+#: forms.py:44 templates/change_password_form.html:15
 msgid "Old password"
 msgstr "Ancien mot de passe"
 
-#: beamz_auth/forms.py:44 beamz_auth/templates/change_password_form.html:25
-#: beamz_auth/templates/reset_password_form.html:20
+#: forms.py:49 templates/change_password_form.html:25
+#: templates/reset_password_form.html:20
 msgid "New password"
 msgstr "Nouveau mot de passe"
 
-#: beamz_auth/forms.py:49 beamz_auth/templates/change_password_form.html:35
+#: forms.py:54 templates/change_password_form.html:35
 #, fuzzy
 #| msgid "Retype new password"
 msgid "Repeat new password"
 msgstr "Encodez à nouveau le nouveau mot de passe"
 
-#: beamz_auth/forms.py:84
+#: forms.py:89
 msgid "The account linked to this email is waiting Activation."
 msgstr "Le compte lié à cette adresse de courriel est en attente d'activation."
 
-#: beamz_auth/forms.py:108
+#: forms.py:117
 msgid "Either your account is already validated, or you've not registered."
 msgstr "Votre compte est soit validé, soit vous ne l'avez jamais créé."
 
-#: beamz_auth/models.py:27
+#: models.py:32
 msgid "Thanks for registering your BeamZ account"
-msgstr "Merci dávoir créé votre compte BeamZ"
+msgstr "Merci d'avoir créé votre compte BeamZ"
 
-#: beamz_auth/templates/auth-login.html:5
+#: templates/auth-login.html:5
 msgid "Sign in"
 msgstr "Se connecter"
 
-#: beamz_auth/templates/auth-login.html:7
+#: templates/auth-login.html:7 templates/auth-otp.html:7
 msgid "Welcome back"
 msgstr "Bienvenue"
 
-#: beamz_auth/templates/auth-login.html:8
+#: templates/auth-login.html:8
 msgid "Sign in to your account to continue"
 msgstr "Connectez-vous pour poursuivre"
 
-#: beamz_auth/templates/auth-login.html:13
+#: templates/auth-login.html:13
 msgid "You are already logged in as"
 msgstr "Vous êtes déjà connecté en tant que"
 
-#: beamz_auth/templates/auth-login.html:16
+#: templates/auth-login.html:16
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: beamz_auth/templates/auth-login.html:17
+#: templates/auth-login.html:17
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-#: beamz_auth/templates/auth-login.html:26
-#: beamz_auth/templates/auth-register.html:17
+#: templates/auth-login.html:26 templates/auth-register.html:24
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: beamz_auth/templates/auth-login.html:33
-#: beamz_auth/templates/auth-register.html:35
+#: templates/auth-login.html:33 templates/auth-register.html:42
 msgid "Password"
 msgstr "Mot de passe"
 
-#: beamz_auth/templates/auth-login.html:37
+#: templates/auth-login.html:37
 #, fuzzy
 #| msgid "Forgot your password?"
 msgid "Forgot password"
 msgstr "Mot de passe perdu?"
 
-#: beamz_auth/templates/auth-login.html:37
+#: templates/auth-login.html:37
 msgid "Reset Password"
 msgstr "Réinitialiser le mot de passe"
 
-#: beamz_auth/templates/auth-login.html:41
-#: beamz_auth/templates/auth-register.html:58
-#: beamz_auth/templates/success-register.html:12
+#: templates/auth-login.html:41 templates/auth-register.html:65
+#: templates/success-register.html:12
 msgid "Login"
 msgstr "Se connecter"
 
-#: beamz_auth/templates/auth-login.html:44
+#: templates/auth-login.html:44
 msgid "Don't have an account?"
 msgstr "Vous n'avez pas de compte?"
 
-#: beamz_auth/templates/auth-login.html:44
+#: templates/auth-login.html:44
 msgid "Join Now"
 msgstr "Rejoignez nous"
 
-#: beamz_auth/templates/auth-register.html:5
-#: beamz_auth/templates/success-register.html:5
+#: templates/auth-otp.html:5
+#, fuzzy
+#| msgid "Password"
+msgid "OTP Password"
+msgstr "Mot de passe"
+
+#: templates/auth-otp.html:8
+msgid "2FA authentification"
+msgstr "Authentification a 2 facteurs"
+
+#: templates/auth-otp.html:27
+msgid "You're accessing a section which requires 2 factors authentification."
+msgstr "Vous accédez à une section nécessitant l'authentification à 2 facteurs"
+
+#: templates/auth-otp.html:28
+msgid "Enter the 6 digits code from your authentification application."
+msgstr "Entrez le code à 6 chiffres de votre application d'authentification."
+
+#: templates/auth-otp.html:29
+msgid "We've sent an email with the 6 digits code."
+msgstr "Nous vous avons envoyé un code à 6 chiffres par mail."
+
+#: templates/auth-otp.html:57
+msgid "Authenticate"
+msgstr "Authentification"
+
+#: templates/auth-otp.html:59
+#, fuzzy
+#| msgid "Still not received?"
+msgid "Email not received ?"
+msgstr "Toujours pas reçu?"
+
+#: templates/auth-otp.html:59
+#, fuzzy
+#| msgid "Resend it"
+msgid "Re-send code"
+msgstr "Le renvoyer"
+
+#: templates/auth-register.html:5 templates/success-register.html:5
 msgid "Register"
 msgstr "Créer un compte"
 
-#: beamz_auth/templates/auth-register.html:7
-#: beamz_auth/templates/success-register.html:7
-#: beamz_auth/templates/token-resent.html:7
-#: beamz_auth/templates/token-sent.html:7
+#: templates/auth-register.html:7 templates/success-register.html:7
+#: templates/token-resent.html:7 templates/token-sent.html:7
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: beamz_auth/templates/auth-register.html:8
+#: templates/auth-register.html:8
 msgid "Register to access the application"
 msgstr "Créez un compte pour utiliser l'application"
 
-#: beamz_auth/templates/auth-register.html:26
-#: beamz_auth/templates/password_reset_form.html:15
+#: templates/auth-register.html:33 templates/password_reset_form.html:15
 msgid "Email"
 msgstr "Courriel"
 
-#: beamz_auth/templates/auth-register.html:44
+#: templates/auth-register.html:51
 #, fuzzy
 #| msgid "Retype new password"
 msgid "Repeat password"
 msgstr "Encodez à nouveau le nouveau mot de passe"
 
-#: beamz_auth/templates/auth-register.html:54
+#: templates/auth-register.html:61
 msgid "Sign up"
-msgstr "S' enregistrer"
+msgstr "S'enregistrer"
 
-#: beamz_auth/templates/auth-register.html:58
+#: templates/auth-register.html:65
 msgid "Already have an account?"
 msgstr "Vous avez déjà un compte?"
 
-#: beamz_auth/templates/auth-register.html:61
+#: templates/auth-register.html:68
 msgid "Searching for account validation email?"
 msgstr "Vous návez pas trouvé le courriel de vérification du compte?"
 
-#: beamz_auth/templates/auth-register.html:61
+#: templates/auth-register.html:68
 msgid "Resend it"
 msgstr "Le renvoyer"
 
-#: beamz_auth/templates/change_password_form.html:5
-#: beamz_auth/templates/change_password_form.html:45
+#: templates/change_password_form.html:5 templates/change_password_form.html:45
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
-#: beamz_auth/templates/change_password_form.html:7
+#: templates/change_password_form.html:7
 msgid "Need a new password?"
 msgstr "Besoin d'un nouveau mot de passe?"
 
-#: beamz_auth/templates/change_password_form.html:9
+#: templates/change_password_form.html:9
 msgid ""
 "Please enter your old password, for security’s sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
@@ -164,27 +194,27 @@ msgstr ""
 "ensuite, entrez votre nouveau mot de passe deux fois, pour nous permettre de "
 "vérifier que vous n'avez pas commis dérreur en l'encodant."
 
-#: beamz_auth/templates/change_password_form.html:46
+#: templates/change_password_form.html:46
 msgid "Cancel"
 msgstr "Annuler"
 
-#: beamz_auth/templates/mail_activation.html:10
+#: templates/mail_activation.html:10
 msgid "Congrats for registering your BeamZ account."
 msgstr "Félicitations dávoir créé votre compte BeamZ."
 
-#: beamz_auth/templates/mail_activation.html:12
+#: templates/mail_activation.html:12
 msgid "Here is the link to activate the account"
 msgstr "Voici le lien pour activer votre compte"
 
-#: beamz_auth/templates/missing-token.html:4
+#: templates/missing-token.html:4
 msgid "Validation email not received"
 msgstr "Courriel de verification non reçuStill not received?"
 
-#: beamz_auth/templates/missing-token.html:6
+#: templates/missing-token.html:6
 msgid "Enter your email adress"
 msgstr "Entrez votre adresse de courriel"
 
-#: beamz_auth/templates/missing-token.html:8
+#: templates/missing-token.html:8
 msgid ""
 "If you've not received our activation email, we'll send it again to activate "
 "your account"
@@ -192,40 +222,40 @@ msgstr ""
 "Si vous n'avez pas reçu notre courriel de vérification, nous vous "
 "l'enverrons à nouveau pour activer votre compte."
 
-#: beamz_auth/templates/missing-token.html:20
+#: templates/missing-token.html:25
 msgid "Email adress"
 msgstr "Adresse de courriel"
 
-#: beamz_auth/templates/missing-token.html:25
+#: templates/missing-token.html:30
 msgid "Send my activation email"
 msgstr "Envoyer mon courriel de vérification"
 
-#: beamz_auth/templates/password_reset_complete.html:5
-#: beamz_auth/templates/password_reset_complete.html:7
+#: templates/password_reset_complete.html:5
+#: templates/password_reset_complete.html:7
 msgid "Password reset complete"
 msgstr "Réinitialisation du mot de passe terminée"
 
-#: beamz_auth/templates/password_reset_complete.html:9
+#: templates/password_reset_complete.html:9
 msgid "Your password has been set. You may go ahead and "
 msgstr "Votre mot de passe est défini. Vous pouvez continuer et "
 
-#: beamz_auth/templates/password_reset_complete.html:9
+#: templates/password_reset_complete.html:9
 msgid "log in"
 msgstr "vous connecter"
 
-#: beamz_auth/templates/password_reset_complete.html:9
+#: templates/password_reset_complete.html:9
 msgid "now"
 msgstr "maintenant"
 
-#: beamz_auth/templates/password_reset_form.html:4
+#: templates/password_reset_form.html:4
 msgid "Lost password"
 msgstr "Mot de passe perdu"
 
-#: beamz_auth/templates/password_reset_form.html:6
+#: templates/password_reset_form.html:6
 msgid "Forgot your password?"
 msgstr "Mot de passe perdu?"
 
-#: beamz_auth/templates/password_reset_form.html:8
+#: templates/password_reset_form.html:8
 #, fuzzy
 #| msgid ""
 #| "Enter your email address below, and we'll email instructions for setting "
@@ -236,20 +266,19 @@ msgstr ""
 "Entrez votre adresse de courriel ci-dessous, et nous vous enverrons un "
 "courriel contenant les instructions pour en définir un nouveau."
 
-#: beamz_auth/templates/password_reset_form.html:21
-#: beamz_auth/templates/reset_password_form.html:34
+#: templates/password_reset_form.html:21 templates/reset_password_form.html:34
 msgid "Reset my password"
 msgstr "Réinitialiser mon mot de passe"
 
-#: beamz_auth/templates/password_reset_sent.html:4
+#: templates/password_reset_sent.html:4
 msgid "Email sent"
 msgstr "Courriel envoyé"
 
-#: beamz_auth/templates/password_reset_sent.html:6
+#: templates/password_reset_sent.html:6
 msgid "Password reset instructions sent"
 msgstr "Instruction de réinitialisation du mot de passe envoyées"
 
-#: beamz_auth/templates/password_reset_sent.html:8
+#: templates/password_reset_sent.html:8
 msgid ""
 "We've emailed you instructions for setting your password. You should receive "
 "the email shortly!"
@@ -257,12 +286,11 @@ msgstr ""
 "Nous vous avons envoyé un courriel avec la procédure de changement de mot de "
 "passe. Vous deviez le recevoir rapidement."
 
-#: beamz_auth/templates/reset_password_form.html:4
-#: beamz_auth/templates/reset_password_form.html:6
+#: templates/reset_password_form.html:4 templates/reset_password_form.html:6
 msgid "Enter new password"
 msgstr "Entrez un nnouveau mot de passe"
 
-#: beamz_auth/templates/reset_password_form.html:8
+#: templates/reset_password_form.html:8
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
@@ -270,23 +298,23 @@ msgstr ""
 "Merci d'entrer votre nouveau mot de passe deux fois, pour nous permettre de "
 "vérifier que vous n'avez pas commis dérreur en l'encodant."
 
-#: beamz_auth/templates/reset_password_form.html:29
+#: templates/reset_password_form.html:29
 msgid "Confirm password"
 msgstr "Confirmez le mot de passe"
 
-#: beamz_auth/templates/success-register.html:8
+#: templates/success-register.html:8
 msgid "Successful register"
 msgstr "Enregistré avec succès"
 
-#: beamz_auth/templates/success-register.html:12
+#: templates/success-register.html:12
 msgid "You're now registered as a free user."
 msgstr "Vous êtes maintenant enregistré en tant qu'utilisateur gratuit."
 
-#: beamz_auth/templates/success-register.html:12
+#: templates/success-register.html:12
 msgid "to continue."
 msgstr "pour continuer."
 
-#: beamz_auth/templates/success-register.html:13
+#: templates/success-register.html:13
 msgid ""
 "To analyse structures, you'll need a professional or student subscription. "
 "You can request it through"
@@ -294,28 +322,26 @@ msgstr ""
 "Pour analyser des structures, vous avez besoin d'une licence professionelle "
 "ou étudiante. Vous pouvez la demander via"
 
-#: beamz_auth/templates/success-register.html:13
+#: templates/success-register.html:13
 msgid "your portal"
 msgstr "votre portail"
 
-#: beamz_auth/templates/success-register.html:14
+#: templates/success-register.html:14
 msgid ""
 "Member of an organisation? Ask your admin to add your account in the org."
 msgstr ""
 "Membre d'une compagnie? Demandez à votre responsable d'ajouter votre compte "
 "à l'organisation."
 
-#: beamz_auth/templates/token-resent.html:5
-#: beamz_auth/templates/token-sent.html:5
+#: templates/token-resent.html:5 templates/token-sent.html:5
 msgid "Token sent"
 msgstr "Jeton envoyé"
 
-#: beamz_auth/templates/token-resent.html:8
+#: templates/token-resent.html:8
 msgid "Successfully sent activation mail"
 msgstr "Courriel de vérification envoyé avec succès"
 
-#: beamz_auth/templates/token-resent.html:12
-#: beamz_auth/templates/token-sent.html:13
+#: templates/token-resent.html:12 templates/token-sent.html:13
 msgid ""
 "We've sent an email with a confirmation link. Not received? Check your spam "
 "box."
@@ -323,34 +349,40 @@ msgstr ""
 "Nous vous avons envoyé un lien de confirmation par courriel. Pas reçu? "
 "Vérifiez vos courriels indésirables."
 
-#: beamz_auth/templates/token-resent.html:13
-#: beamz_auth/templates/token-sent.html:14
+#: templates/token-resent.html:13 templates/token-sent.html:14
 msgid "Still not received?"
 msgstr "Toujours pas reçu?"
 
-#: beamz_auth/templates/token-resent.html:13
-#: beamz_auth/templates/token-sent.html:14
+#: templates/token-resent.html:13 templates/token-sent.html:14
 msgid "Send activation mail"
 msgstr "Envoyer le courriel de validation"
 
-#: beamz_auth/templates/token-sent.html:8
+#: templates/token-sent.html:8
 msgid "Successfully registered"
 msgstr "Enregistré avec succès"
 
-#: beamz_auth/templates/token-sent.html:12
+#: templates/token-sent.html:12
 msgid "You're now registered, but you must confirm your email to"
 msgstr ""
 "Votre compte est maintenant créé, mais vous devez confirmer votre adresse de "
 "courriel pour"
 
-#: beamz_auth/templates/token-sent.html:12
+#: templates/token-sent.html:12
 msgid "activate"
 msgstr "activer"
 
-#: beamz_auth/templates/token-sent.html:12
+#: templates/token-sent.html:12
 msgid "your account"
 msgstr "votre compte"
 
-#: beamz_auth/views.py:54 beamz_auth/views.py:57
+#: views.py:34
+msgid "Error while creating user. Check email adress or username."
+msgstr "Erreur lors de la création du compte. Vérifiez l'adresse mail ou le nom d'utilisateur."
+
+#: views.py:47
+msgid "There was an issue sending email. Is your address correct?"
+msgstr "Une erreur est survenue lors de l'envoi du mail. Votre adresse est-elle correcte?"
+
+#: views.py:77 views.py:80
 msgid "Account not activated, wrong token"
 msgstr "Compte non activé, le jeton est erroné"

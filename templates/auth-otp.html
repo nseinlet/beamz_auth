@@ -1,0 +1,62 @@
+{% extends "auth-base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block subtitle %}{% trans "OTP Password" %}{% endblock %}
+
+{% block headercontent %}{% trans "Welcome back" %}{% endblock %}
+{% block introcontent %}{% trans "2FA authentification" %}{% endblock %}
+
+{% block formcontent %}
+    <script>
+        function request_new_challenge() {
+            fetch('/{{ LANGUAGE_CODE }}/otp/new_challenge/', {
+                credentials: "same-origin",
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Accept': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+            })
+        }
+    </script>
+
+    <div class="alert alert-success" role="alert">
+        <center>
+            {% trans "You're accessing a section which requires 2 factors authentification." %}
+            {% if device.type == 'totp' %}{% trans "Enter the 6 digits code from your authentification application." %}{% endif %}
+            {% if device.type == 'email' %}{% trans "We've sent an email with the 6 digits code." %}{% endif %}
+        </center>
+    </div>
+
+	{{ form.non_field_errors }}
+	{% csrf_token %}
+
+    
+    <div class="form-group mb-3">
+        {% if error_msg %}
+            <div class="alert alert-danger" role="alert">
+                {{ error_msg }}
+            </div>
+        {% endif %}
+        
+        <center>
+            {{ form.otp_token }}
+        </center>
+
+        {% if form.otp_token.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.otp_token.errors }}
+            </div>
+        {% endif %}
+
+	</div>
+
+    <div class="submit-row text-center mt-3">
+        <button type="submit" class="btn btn-lg btn-primary">{% trans "Authenticate" %}</button>
+    </div>
+    {% if device.type == 'email' %}<br/><center>{% trans "Email not received ?" %} <a href="#" onclick="request_new_challenge()">{% trans "Re-send code" %}</a></center>{% endif %}
+
+{% endblock %}
+
