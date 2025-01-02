@@ -1,11 +1,13 @@
 import logging
 
 from django.contrib.auth.forms import AuthenticationForm, UsernameField, PasswordResetForm, UserCreationForm, PasswordChangeForm
+from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 
 from .models import UserValidation
+from .fields import TurnstileField
 
 _logger = logging.getLogger(__name__)
 
@@ -24,6 +26,7 @@ class UserLoginForm(AuthenticationForm):
             'class': 'form-control',
             'placeholder': ''
         }))
+    turnstile = TurnstileField()
 
 
 class ResetPasswordForm(PasswordResetForm):
@@ -82,11 +85,14 @@ class UserRegisterForm(UserCreationForm):
             'class': 'form-control', 
             'placeholder': ''
         }))
+    turnstile = TurnstileField()
     
     def clean_email(self):
         data = self.cleaned_data["email"]
         if UserValidation.objects.filter(owner_uid__email=data).filter(owner_uid__is_active=False).count()==1:
             raise ValidationError(_("The account linked to this email is waiting Activation."))
+        if User.objects.filter(email=data).count()>0:
+            raise ValidationError(_("Invalid email address."))
         return data
     
     def save(self, commit=True):

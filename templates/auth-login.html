@@ -37,6 +37,11 @@
 			{% trans "Forgot password" %}? <a href="{% url 'password_reset' %}">{% trans "Reset Password" %}</a>
 		</small>
 	</div>
+	{% if not debug_flag %}
+		<div class="form-group mb-3 text-center">
+			{{ form.turnstile }}
+		</div>
+	{% endif %}
 	<div class="text-center mt-3">
 		<button type="submit" class="btn btn-lg btn-primary">{% trans "Login" %}</button>
 	</div>
