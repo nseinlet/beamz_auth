@@ -16,16 +16,17 @@ class TurnstileField(forms.Field):
         return attrs
     
     def validate(self, value):
+        if settings.DEBUG:
+            return True
         super().validate(value)
-        if not settings.DEBUG:
-            res = requests.post(
-                url=settings.TURNSTILE_VERIFYURL,
-                data={
-                    'secret': settings.TURNSTILE_SECRET,
-                    'response': value,
-                },
-            )
-            res.raise_for_status()
-            response_data = res.json()
-            if not response_data.get('success'):
-                raise ValidationError(_("Proove you're not a robot"))
+        res = requests.post(
+            url=settings.TURNSTILE_VERIFYURL,
+            data={
+                'secret': settings.TURNSTILE_SECRET,
+                'response': value,
+            },
+        )
+        res.raise_for_status()
+        response_data = res.json()
+        if not response_data.get('success'):
+            raise ValidationError(_("Proove you're not a robot"))
