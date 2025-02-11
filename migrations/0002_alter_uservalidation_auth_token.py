@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='uservalidation',
             name='auth_token',
-            field=models.CharField(default=beamz_auth.models.default_token, max_length=100),
+            field=models.CharField(default=beamz_auth.models.userValidation.default_token, max_length=100),
         ),
     ]
