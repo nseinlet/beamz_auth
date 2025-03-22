@@ -1,0 +1,4 @@
+{% if api_url %}
+<script async defer src="{{ api_url }}"></script>
+<div class="{{ captcha_class }}" {% include "django/forms/widgets/attrs.html" %}></div>
+{% endif %}
