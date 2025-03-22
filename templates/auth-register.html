@@ -55,11 +55,9 @@
         </div>
         {% endif %}
 	</div>
-    {% if not debug_flag %}
-        <div class="form-group mb-3 text-center">
-            {{ form.turnstile }}
-        </div>
-    {% endif %}
+    <div class="form-group mb-3 text-center">
+        {{ form.captcha }}
+    </div>
 
 
     <div class="text-center mt-3">

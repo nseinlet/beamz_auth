@@ -7,7 +7,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 
 from .models import UserValidation
-from .fields import TurnstileField
+from .fields import CaptchaField
 
 _logger = logging.getLogger(__name__)
 
@@ -26,7 +26,7 @@ class UserLoginForm(AuthenticationForm):
             'class': 'form-control',
             'placeholder': ''
         }))
-    turnstile = TurnstileField()
+    captcha = CaptchaField()
 
 
 class ResetPasswordForm(PasswordResetForm):
@@ -85,7 +85,7 @@ class UserRegisterForm(UserCreationForm):
             'class': 'form-control', 
             'placeholder': ''
         }))
-    turnstile = TurnstileField()
+    captcha = CaptchaField()
     
     def clean_email(self):
         data = self.cleaned_data["email"]
