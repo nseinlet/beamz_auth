@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-11 20:10+0100\n"
+"POT-Creation-Date: 2025-03-25 21:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,30 +18,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: forms.py:44 templates/change_password_form.html:15
+#: fields.py:43
+msgid "Proove you're not a robot"
+msgstr "Demontrez que vous etes humain"
+
+#: forms.py:47 templates/change_password_form.html:15
 msgid "Old password"
 msgstr "Ancien mot de passe"
 
-#: forms.py:49 templates/change_password_form.html:25
+#: forms.py:52 templates/change_password_form.html:25
 #: templates/reset_password_form.html:20
 msgid "New password"
 msgstr "Nouveau mot de passe"
 
-#: forms.py:54 templates/change_password_form.html:35
-#, fuzzy
-#| msgid "Retype new password"
+#: forms.py:57 templates/change_password_form.html:35
 msgid "Repeat new password"
 msgstr "Encodez à nouveau le nouveau mot de passe"
 
-#: forms.py:89
+#: forms.py:93
 msgid "The account linked to this email is waiting Activation."
 msgstr "Le compte lié à cette adresse de courriel est en attente d'activation."
 
-#: forms.py:117
+#: forms.py:95
+msgid "Invalid email address."
+msgstr "Adresse de courriel invalide"
+
+#: forms.py:123
 msgid "Either your account is already validated, or you've not registered."
 msgstr "Votre compte est soit validé, soit vous ne l'avez jamais créé."
 
-#: models.py:32
+#: models/userValidation.py:32
 msgid "Thanks for registering your BeamZ account"
 msgstr "Merci d'avoir créé votre compte BeamZ"
 
@@ -69,42 +75,38 @@ msgstr "Se déconnecter"
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-#: templates/auth-login.html:26 templates/auth-register.html:24
+#: templates/auth-login.html:26 templates/auth-register.html:23
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: templates/auth-login.html:33 templates/auth-register.html:42
+#: templates/auth-login.html:33 templates/auth-register.html:41
 msgid "Password"
 msgstr "Mot de passe"
 
 #: templates/auth-login.html:37
-#, fuzzy
-#| msgid "Forgot your password?"
 msgid "Forgot password"
-msgstr "Mot de passe perdu?"
+msgstr "Mot de passe perdu"
 
 #: templates/auth-login.html:37
 msgid "Reset Password"
 msgstr "Réinitialiser le mot de passe"
 
-#: templates/auth-login.html:41 templates/auth-register.html:65
+#: templates/auth-login.html:46 templates/auth-register.html:68
 #: templates/success-register.html:12
 msgid "Login"
 msgstr "Se connecter"
 
-#: templates/auth-login.html:44
+#: templates/auth-login.html:49
 msgid "Don't have an account?"
 msgstr "Vous n'avez pas de compte?"
 
-#: templates/auth-login.html:44
+#: templates/auth-login.html:49
 msgid "Join Now"
 msgstr "Rejoignez nous"
 
 #: templates/auth-otp.html:5
-#, fuzzy
-#| msgid "Password"
 msgid "OTP Password"
-msgstr "Mot de passe"
+msgstr "Code OTP"
 
 #: templates/auth-otp.html:8
 msgid "2FA authentification"
@@ -127,16 +129,12 @@ msgid "Authenticate"
 msgstr "Authentification"
 
 #: templates/auth-otp.html:59
-#, fuzzy
-#| msgid "Still not received?"
 msgid "Email not received ?"
-msgstr "Toujours pas reçu?"
+msgstr "Courriel non reçu?"
 
 #: templates/auth-otp.html:59
-#, fuzzy
-#| msgid "Resend it"
 msgid "Re-send code"
-msgstr "Le renvoyer"
+msgstr "Re-envoyer le code"
 
 #: templates/auth-register.html:5 templates/success-register.html:5
 msgid "Register"
@@ -151,29 +149,27 @@ msgstr "Bienvenue"
 msgid "Register to access the application"
 msgstr "Créez un compte pour utiliser l'application"
 
-#: templates/auth-register.html:33 templates/password_reset_form.html:15
+#: templates/auth-register.html:32 templates/password_reset_form.html:15
 msgid "Email"
 msgstr "Courriel"
 
-#: templates/auth-register.html:51
-#, fuzzy
-#| msgid "Retype new password"
+#: templates/auth-register.html:50
 msgid "Repeat password"
-msgstr "Encodez à nouveau le nouveau mot de passe"
+msgstr "Repetez le mot de passe"
 
-#: templates/auth-register.html:61
+#: templates/auth-register.html:64
 msgid "Sign up"
 msgstr "S'enregistrer"
 
-#: templates/auth-register.html:65
+#: templates/auth-register.html:68
 msgid "Already have an account?"
 msgstr "Vous avez déjà un compte?"
 
-#: templates/auth-register.html:68
+#: templates/auth-register.html:71
 msgid "Searching for account validation email?"
 msgstr "Vous návez pas trouvé le courriel de vérification du compte?"
 
-#: templates/auth-register.html:68
+#: templates/auth-register.html:71
 msgid "Resend it"
 msgstr "Le renvoyer"
 
@@ -377,11 +373,15 @@ msgstr "votre compte"
 
 #: views.py:34
 msgid "Error while creating user. Check email adress or username."
-msgstr "Erreur lors de la création du compte. Vérifiez l'adresse mail ou le nom d'utilisateur."
+msgstr ""
+"Erreur lors de la création du compte. Vérifiez l'adresse mail ou le nom "
+"d'utilisateur."
 
 #: views.py:47
 msgid "There was an issue sending email. Is your address correct?"
-msgstr "Une erreur est survenue lors de l'envoi du mail. Votre adresse est-elle correcte?"
+msgstr ""
+"Une erreur est survenue lors de l'envoi du mail. Votre adresse est-elle "
+"correcte?"
 
 #: views.py:77 views.py:80
 msgid "Account not activated, wrong token"
