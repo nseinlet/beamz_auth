@@ -33,7 +33,7 @@ class CaptchaField(forms.Field):
         res = requests.post(
             url=self._captacha_verifyurl(),
             data={
-                'secret': settings.CAPTCHA_SERVICE_SECRET,
+                'secret': settings.CAPTCHA_SERVICE_SECRET if hasattr(settings, 'CAPTCHA_SERVICE_SECRET') else '',
                 'response': value,
             },
         )

@@ -34,7 +34,7 @@ class CaptchaInput(forms.Widget):
 
     def build_attrs(self, base_attrs, extra_attrs=None):
         attrs = super().build_attrs(base_attrs, extra_attrs)
-        attrs['data-sitekey'] = settings.CAPTCHA_SERVICE_SITEKEY
+        attrs['data-sitekey'] = settings.CAPTCHA_SERVICE_SITEKEY if hasattr(settings, 'CAPTCHA_SERVICE_SITEKEY') else ''
         return attrs
 
     def get_context(self, name, value, attrs):
