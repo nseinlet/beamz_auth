@@ -14,6 +14,7 @@
     
         <title>BeamZ - {% block subtitle %}{% endblock %}</title>
         <link rel="shortcut icon" type="image/png" href="/static/favicon.ico"/>
+        <link rel="canonical" href="https://{{ request.get_host }}{% block canonicalurl %}{{ request.get_full_path }}{% endblock %}"> 
 
         {% include "css.html" %}
         <link rel="stylesheet" href="/static/src/css/auth.css"/>
@@ -27,10 +28,7 @@
               <div class="row vh-100">
                 <div class="col-sm-12 col-md-12 col-lg-12 mx-auto d-table h-100">
                   <div class="d-table-cell align-middle">
-                    
-                      
-                      
-                    
+
                     <div class="card-group">
                       <div class="card">
                         <div class="card-body beamzgrey">
@@ -75,6 +73,7 @@
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>
