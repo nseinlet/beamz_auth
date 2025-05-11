@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models.userValidation import UserValidation
-from .models.userSession import UserSession
+from .models import UserValidation, UserSession, BlackList
 
+admin.site.register(BlackList)
 
 @admin.register(UserValidation)
 class UserValidationAdmin(admin.ModelAdmin):
