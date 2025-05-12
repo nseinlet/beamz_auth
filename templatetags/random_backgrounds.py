@@ -6,6 +6,9 @@ register = template.Library()
 @register.simple_tag
 def random_background():
     picts = [
+        'dalle-bridge-ghibli.png',
+        'dalle-guillemin-ghibli.png',
+        'dalle-millau-ghibli.png',
         'devin-rajaram-Ji_Lm0WbVYc-unsplash.jpg',
         'edgar-chaparro-HnFosyNwbPo-unsplash.jpg',
         'henk-van-der-steege-M-v1p5VMD90-unsplash.jpg',

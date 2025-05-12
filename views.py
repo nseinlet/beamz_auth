@@ -39,7 +39,7 @@ def missing_token(request):
     if request.method == "POST":
         form = MissingTokenForm(request.POST)
         if form.is_valid():
-            uv = UserValidation.objects.filter(owner_uid__email=form.cleaned_data['email'])
+            uv = UserValidation.objects.filter(owner_uid__email=form.cleaned_data['email'], owner_uid__is_active=False)
             if uv.count()>0:
                 if uv.first().send_mail():
                     return HttpResponseRedirect("/token-resent/")
