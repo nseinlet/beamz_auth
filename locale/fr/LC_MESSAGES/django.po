@@ -48,8 +48,8 @@ msgid "Either your account is already validated, or you've not registered."
 msgstr "Votre compte est soit validé, soit vous ne l'avez jamais créé."
 
 #: models/userValidation.py:32
-msgid "Thanks for registering your BeamZ account"
-msgstr "Merci d'avoir créé votre compte BeamZ"
+msgid "Thanks for registering your BeamZe account"
+msgstr "Merci d'avoir créé votre compte BeamZe"
 
 #: templates/auth-login.html:5
 msgid "Sign in"
@@ -195,8 +195,8 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #: templates/mail_activation.html:10
-msgid "Congrats for registering your BeamZ account."
-msgstr "Félicitations dávoir créé votre compte BeamZ."
+msgid "Congrats for registering your BeamZe account."
+msgstr "Félicitations dávoir créé votre compte BeamZe."
 
 #: templates/mail_activation.html:12
 msgid "Here is the link to activate the account"

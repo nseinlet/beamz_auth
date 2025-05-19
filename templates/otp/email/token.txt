@@ -1,9 +1,9 @@
 Hello,
 
-here is your BeamZ 6 digits security code. Don't share it with anyone.
+here is your BeamZe 6 digits security code. Don't share it with anyone.
 
 {{token}}
 
 Have a nice day,
 
-the BeamZ team.
+the BeamZe team.

@@ -29,7 +29,7 @@ class UserValidation(models.Model):
     def send_mail(self):
         html_message = render_to_string("mail_activation.html", {'token': self.auth_token, 'login': self.owner_uid.username})
         try:
-            send_mail(_("Thanks for registering your BeamZ account"), strip_tags(html_message), None, [self.owner_uid.email], html_message=html_message)
+            send_mail(_("Thanks for registering your BeamZe account"), strip_tags(html_message), None, [self.owner_uid.email], html_message=html_message)
         except Exception as e:
             _logger.error("Impossible to send email")
             _logger.error(e)
