@@ -1,4 +1,4 @@
-import requests
+import httpx
 
 from django import forms
 from django.conf import settings
@@ -30,9 +30,9 @@ class CaptchaField(forms.Field):
         if not hasattr(settings, 'CAPTCHA_SERVICE') or settings.CAPTCHA_SERVICE=='':
             return True
         super().validate(value)
-        res = requests.post(
+        res = httpx.post(
             url=self._captacha_verifyurl(),
-            data={
+            json={
                 'secret': settings.CAPTCHA_SERVICE_SECRET if hasattr(settings, 'CAPTCHA_SERVICE_SECRET') else '',
                 'response': value,
             },
