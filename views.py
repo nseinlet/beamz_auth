@@ -3,6 +3,7 @@ import json
 
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import transaction
@@ -15,7 +16,7 @@ from django_otp import DEVICE_ID_SESSION_KEY
 from django_otp.forms import OTPTokenForm
 from django_otp.qr import write_qrcode_image
 
-from .forms import UserRegisterForm, MissingTokenForm
+from .forms import UserRegisterForm, MissingTokenForm, LostUsernameForm
 from .models import UserValidation
 
 _logger = logging.getLogger(__name__)
@@ -50,9 +51,31 @@ def missing_token(request):
 
     return render(request, "missing-token.html", {"form": form, "extra_error": extra_error})
 
+
+def lost_username(request):
+    extra_error = ""
+    if request.method == "POST":
+        form = LostUsernameForm(request.POST)
+        if form.is_valid():
+
+            my_user = User.objects.filter(email=form.cleaned_data['email'], is_active=True)
+            if my_user.count()>0:
+                if my_user.first().send_username_mail():
+                    return HttpResponseRedirect("/username-sent/")
+                else:
+                    extra_error = _("There was an issue sending email. Is your address correct?")
+            else:
+                extra_error = _("No active user found. Is your address correct? Have you validated your account?")
+    else:
+        form = LostUsernameForm()
+
+    return render(request, "lost-username.html", {"form": form, "extra_error": extra_error})
+
+
 def logout_view(request):
     logout(request)
     return redirect('/')
+
 
 def token_sent(request):
     return render(
@@ -60,17 +83,27 @@ def token_sent(request):
         "token-sent.html"
     )
 
+
 def token_resent(request):
     return render(
         request,
         "token-resent.html"
     )
 
+
+def username_sent(request):
+    return render(
+        request,
+        "username-sent.html"
+    )
+
+
 def success_register(request):
     return render(
         request,
         "success-register.html"
     )
+
 
 def activate_account(request, token):
     if not token:
@@ -84,6 +117,7 @@ def activate_account(request, token):
     uid.save()
     user_reg.delete()
     return HttpResponseRedirect('/login/')
+
 
 @login_required
 def otp(request):
@@ -121,6 +155,7 @@ def otp(request):
 
     return render(request, "auth-otp.html", {"form": form, "device": device, "error_msg": error_msg})
 
+
 @login_required
 def otp_new_challenge(request):
     if request.method == "POST":
@@ -130,12 +165,14 @@ def otp_new_challenge(request):
             return JsonResponse({"generated": True})
     return JsonResponse({"generated": False})
 
+
 @login_required
 def otp_totp_qr_code(request):
     device = request.user.ensure_totp_device()
     response = HttpResponse(content_type='image/svg+xml')
     write_qrcode_image(device.config_url, response)
     return response
+
 
 @login_required
 def otp_totp_check(request):

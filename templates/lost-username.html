@@ -1,0 +1,33 @@
+{% extends "auth-base.html" %}
+{% load i18n %}
+
+{% block subtitle %}{% trans "Lost username" %}{% endblock %}
+
+{% block headercontent %}{% trans "Enter your email adress" %}{% endblock %}
+
+{% block introcontent %}{% trans "Lost your username? Enter your email address and we'll send you a reminder." %}{% endblock %}
+
+{% block formcontent %}
+    {{ form.non_field_errors }}
+    {% csrf_token %}
+   
+    {% if form.email.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ form.email.errors }}
+        </div>
+    {% endif %}
+    {% if extra_error %}
+        <div class="alert alert-danger" role="alert">
+            {{ extra_error }}
+        </div>
+    {% endif %}
+    <div class="form-group mb-3">
+        <label for="id_email">{% trans "Email adress" %}:</label>
+        <input class="form-control" type="email" id="id_email" name="email" value="">
+    </p>
+
+    <div class="text-center mt-3">
+		<button type="submit" class="btn btn-lg btn-primary">{% trans "Remind me my username" %}</button>
+	</div>
+    
+{% endblock %}

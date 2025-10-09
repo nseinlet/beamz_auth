@@ -1,6 +1,5 @@
 {% extends "auth-base.html" %}
 {% load i18n %}
-{% get_current_language as LANGUAGE_CODE %}
 
 {% block canonicalurl %}/register/{% endblock %}
 {% block subtitle %}{% trans "Register" %}{% endblock %}
@@ -36,6 +35,8 @@
         <div class="alert alert-danger" role="alert">
             {{ form.email.errors }}
         </div>
+        {% trans "Lost username?" %} <a href="{% url 'lost_username' %}" >{% trans "Recover it" %}</a><br/>
+        {% trans "Missed activation email?" %} <a href="{% url 'missing_token' %}">{% trans "Resend it" %}</a>
         {% endif %}
 	</div>
     <div class="form-group mb-3">
@@ -66,10 +67,10 @@
 	</div>
 
     <div class="text-center mt-3">
-		{% trans "Already have an account?" %} <a href="/{{ LANGUAGE_CODE }}/login">{% trans "Login" %}</a>
+		{% trans "Already have an account?" %} <a href="{% url 'login' %}">{% trans "Login" %}</a>
         {% if form.errors %}
         <br/>
-        {% trans "Searching for account validation email?" %}" <a href="/{{ LANGUAGE_CODE }}/missing-token/">{% trans "Resend it" %}</a>
+        {% trans "Searching for account validation email?" %}" <a href="{% url 'missing_token' %}">{% trans "Resend it" %}</a>
         {% endif %}
 	</div>
 

@@ -28,6 +28,12 @@ class UserLoginForm(AuthenticationForm):
         }))
     captcha = CaptchaField()
 
+    # def clean_username(self):
+    #     data = self.cleaned_data["username"]
+    #     if UserValidation.objects.filter(owner_uid__username=data).filter(owner_uid__is_active=False).count()==1:
+    #         raise ValidationError(_("This account is not activated."))
+    #     return data
+
 
 class ResetPasswordForm(PasswordResetForm):
     def __init__(self, *args, **kwargs):
@@ -94,7 +100,7 @@ class UserRegisterForm(UserCreationForm):
         if UserValidation.objects.filter(owner_uid__email=data).filter(owner_uid__is_active=False).count()==1:
             raise ValidationError(_("The account linked to this email is waiting Activation."))
         if User.objects.filter(email=data).count()>0:
-            raise ValidationError(_("Invalid email address."))
+            raise ValidationError(_("An account is already linked to this email address."))
         return data
     
     def save(self, commit=True):
@@ -123,4 +129,18 @@ class MissingTokenForm(forms.Form):
         data = self.cleaned_data["email"]
         if UserValidation.objects.filter(owner_uid__email=data).count()==0:
             raise ValidationError(_("Either your account is already validated, or you've not registered."))
+        return data
+    
+
+class LostUsernameForm(forms.Form):
+    email = forms.EmailField(widget=forms.EmailInput(
+        attrs={
+            'class': 'form-control', 
+            'placeholder': ''
+        }))
+    
+    def clean_email(self):
+        data = self.cleaned_data["email"]
+        if User.objects.filter(email=data).count()==0:
+            raise ValidationError(_("No account found for this email."))
         return data

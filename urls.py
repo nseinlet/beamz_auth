@@ -2,7 +2,7 @@ from django.contrib.auth import views
 from django.urls import path
 
 from .forms import UserLoginForm, ResetPasswordForm, ChangePasswordForm
-from .views import logout_view, SignUpView, success_register, token_sent, missing_token, activate_account, otp, otp_new_challenge, otp_totp_qr_code, otp_totp_check, otp_totp_settings
+from .views import logout_view, SignUpView, success_register, token_sent, missing_token, lost_username, activate_account, otp, otp_new_challenge, otp_totp_qr_code, otp_totp_check, otp_totp_settings, username_sent
 
 
 urlpatterns = [
@@ -22,8 +22,10 @@ urlpatterns = [
     path('reset-password-complete/', views.PasswordResetCompleteView.as_view(template_name="password_reset_complete.html"), name="password_reset_complete"),
     path("register/", SignUpView.as_view(), name="register"),
     path("missing-token/", missing_token, name="missing_token"),
+    path("lost-username/", lost_username, name="lost_username"),
     path("token-sent/", token_sent, name="token_sent"),
     path("token-resent/", token_sent, name="token_resent"),
+    path("username-sent/", username_sent, name="username_sent"),
     path("successregister/", success_register, name="success_register"),
     path('activate/<token>/',  activate_account, name='activate_account'),
     path('otp/new_challenge/', otp_new_challenge, name='otp_new_challenge'),

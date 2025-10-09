@@ -74,6 +74,17 @@ def reset_totp(self):
         device.confirmed = False
         device.save()
 
+def send_username_mail(self):
+    html_message = render_to_string("mail_username.html", {'login': self.username})
+    try:
+        send_mail(_("Your BeamZe account username"), strip_tags(html_message), None, [self.email], html_message=html_message)
+    except Exception as e:
+        _logger.error("Impossible to send email")
+        _logger.error(e)
+        return False
+    return True
+
 User.add_to_class("get_otp_device", get_otp_device)
 User.add_to_class("ensure_totp_device", ensure_totp_device)
 User.add_to_class("reset_totp", reset_totp)
+User.add_to_class("send_username_mail", send_username_mail)

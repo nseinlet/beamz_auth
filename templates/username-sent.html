@@ -1,0 +1,14 @@
+{% extends "auth-base.html" %}
+{% load i18n %}
+
+{% block subtitle %}{% trans "Username sent" %}{% endblock %}
+
+{% block headercontent %}{% trans "Welcome" %}{% endblock %}
+{% block introcontent %}{% trans "Successfully sent username reminder email" %}{% endblock %}
+
+{% block formcontent %}
+
+    <p> {% trans "We've sent an email with your username. Not received? Check your spam box." %}</p>
+    <p> <a href="{% url 'login' %}" class="btn btn-primary">{% trans "Login" %}</a></p>
+
+{% endblock %}
