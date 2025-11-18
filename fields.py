@@ -30,9 +30,10 @@ class CaptchaField(forms.Field):
         if not hasattr(settings, 'CAPTCHA_SERVICE') or settings.CAPTCHA_SERVICE=='':
             return True
         super().validate(value)
+        httpx.Client(transport=httpx.HTTPTransport(local_address="0.0.0.0"))
         res = httpx.post(
             url=self._captacha_verifyurl(),
-            json={
+            data={
                 'secret': settings.CAPTCHA_SERVICE_SECRET if hasattr(settings, 'CAPTCHA_SERVICE_SECRET') else '',
                 'response': value,
             },
