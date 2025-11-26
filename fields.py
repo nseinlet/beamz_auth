@@ -1,4 +1,5 @@
 import httpx
+import logging
 
 from django import forms
 from django.conf import settings
@@ -6,6 +7,8 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 
 from .widgets import CaptchaInput
+
+_logger = logging.getLogger(__name__)
 
 
 class CaptchaField(forms.Field):
@@ -39,7 +42,7 @@ class CaptchaField(forms.Field):
             },
         )
         res.raise_for_status()
+        _logger.debug(f"Captcha verification response: {res.text}")
         response_data = res.json()
         if not response_data.get('success'):
             raise ValidationError(_("Proove you're not a robot"))
-
